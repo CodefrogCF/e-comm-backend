@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Product
+from .models import Product, Order, OrderItem
 
 class ProductSerializer(serializers.ModelSerializer):
     image = serializers.SerializerMethodField()
@@ -13,3 +13,22 @@ class ProductSerializer(serializers.ModelSerializer):
         if obj.image and hasattr(obj.image, 'url'):
             return request.build_absolute_uri(obj.image.url)
         return None
+
+class OrderItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = OrderItem
+        fields = ['product', 'quantity']
+
+class OrderSerializer(serializers.ModelSerializer):
+    items = OrderItemSerializer(many=True)
+
+class Meta:
+    model = Order
+    fields = ['id', 'created_at', 'customer_name', 'customer_email', 'items']
+
+def create(self, validated_data):
+    items_data = validated_data.pop('items')
+    order = Order.objects.create(**validated_data)
+    for item_data in items_data:
+        OrderItem.objects.create(order=order, **item_data)
+        return order
