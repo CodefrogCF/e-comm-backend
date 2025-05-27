@@ -39,6 +39,10 @@ def deleteProduct(request):
     except Product.DoesNotExist:
         return Response({'error': 'Product not found'}, status=404)
 
+class ProductViewSet(viewsets.ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+
 class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
