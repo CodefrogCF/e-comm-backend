@@ -132,7 +132,11 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CORS_ALLOWED_ORIGINS = [ "http://localhost:4200" ]  # Adjust this to your frontend's URL
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:4200", # Adjust this to your frontend's URL
+    "https://codefrog.ch",
+    "https://codefros.ch",
+    ]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
