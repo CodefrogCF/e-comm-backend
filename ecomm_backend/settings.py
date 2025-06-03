@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-jz=cj$1l%k4a%^1&2szxuc54wqqxug0xqpu=(pckc)v4gr8hdq
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['codefrog.ch', 'www.codefrog.ch' 'codefros.ch', 'www.codefros.ch', '217.154.125.111']
 
 
 # Application definition
